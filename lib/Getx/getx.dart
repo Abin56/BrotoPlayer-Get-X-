@@ -6,6 +6,7 @@ import 'package:broto_player/widgets/Splashscreens/splashscreen.dart';
 import 'package:get/get.dart';
 
 class StateGetx extends GetxController{
+  
   @override
   void onInit() {
    splashFetch();

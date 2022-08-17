@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'package:broto_player/Getx/player_getx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
+import 'package:get/get.dart';
 import '../../../Database/datamode.dart';
 import '../../../main.dart';
 import '../../../videoplayer/thumbnail.dart';
@@ -8,9 +10,10 @@ import '../../../videoplayer/widget/Project/allvideoplayer.dart';
 import '../Add favou/remove_tile.dart';
 bool boolrec = false;
 class RecentVideoList extends StatelessWidget {
+  final allvideocontrollerr = Get.find<AllPlayerContoller>();
   final String playlistvideoname;
   final int index;
-  const RecentVideoList(
+ RecentVideoList(
       {Key? key, required this.playlistvideoname, required this.index})
       : super(key: key);
 
@@ -42,10 +45,15 @@ Recentlistingmode? obj = recentDB.getAt(index);
 
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => AllvideoPlayer(
-                  urls: list,
-                  index: index,
-                ),
+                builder: (context) {
+                 allvideocontrollerr.urls = list;
+                 allvideocontrollerr.index = index;
+             return   AllvideoPlayer(
+                  // urls: list,
+                  // index: index,
+                );
+                }
+               
               ),
             );
           },

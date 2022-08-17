@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'package:broto_player/Getx/player_getx.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../Database/datamode.dart';
 import '../../../main.dart';
 import '../../../videoplayer/thumbnail.dart';
@@ -9,10 +7,9 @@ import '../../../videoplayer/widget/Project/allvideoplayer.dart';
 import '../../Add favou/remove_tile.dart';
 
 class PLonevideotile extends StatelessWidget {
-  final allvideocontroller = Get.find<AllPlayerContoller>();
   final String playlistvideoname;
   final int index;
-  PLonevideotile(
+  const PLonevideotile(
       {Key? key, required this.playlistvideoname, required this.index})
       : super(key: key);
 
@@ -40,14 +37,10 @@ class PLonevideotile extends StatelessWidget {
 
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) {
-                allvideocontroller.urls =list;
-                allvideocontroller.index = index;
-                return AllvideoPlayer(
-                // urls: list,
-                // index: index,
-              );
-              }
+              builder: (context) => AllvideoPlayer(
+                urls: list,
+                index: index,
+              ),
             ),
           );
         },

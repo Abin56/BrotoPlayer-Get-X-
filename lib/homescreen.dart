@@ -1,7 +1,6 @@
 import 'package:broto_player/Database/datamode.dart';
 import 'package:broto_player/Fetching%20files/InnerFetching/fetch_video_data.dart';
 import 'package:broto_player/Getx/getx.dart';
-import 'package:broto_player/Getx/player_getx.dart';
 import 'package:broto_player/main.dart';
 import 'package:broto_player/videoplayer/widget/Project/allvideoplayer.dart';
 import 'package:broto_player/widgets/Drawer/drawer.dart';
@@ -22,7 +21,6 @@ import 'Pages/SearchingVideos/searchdelegate.dart';
 // import 'package:flutter_gradients/flutter_gradients.dart';
 
 class Homescreen extends StatelessWidget {
-  final allvideocontroller = Get.put(AllPlayerContoller());
   final homecontroller = Get.put(StateGetx());
 
   @override
@@ -64,22 +62,14 @@ class Homescreen extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             onPressed: () { 
               if (recentDB.values.isEmpty) {
-                 allvideocontroller.urls =fetchedVideosPath;
-
-
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return AllvideoPlayer(
-                    // urls: fetchedVideosPath
-                    );
+                  return AllvideoPlayer(urls: fetchedVideosPath);
                 }));
               } else {
-                allvideocontroller.urls =getList();
-                allvideocontroller.index = recentDB.values.length-1;
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return AllvideoPlayer(
-
-                    // urls: getList(),
-                    // index: recentDB.values.length - 1,
+                    urls: getList(),
+                    index: recentDB.values.length - 1,
                   );
                 }));
               }
@@ -91,7 +81,7 @@ class Homescreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const MyHeaderDrawer(),
+                  MyHeaderDrawer(),
                   MyDrawerList(context),
                 ],
               ),
@@ -106,12 +96,12 @@ class Homescreen extends StatelessWidget {
 
 }
 
-List screen =  [
-  const HomeScreens(),
-  const Allvideos(),
-  const RecentPage(),
+List screen = const [
+  HomeScreens(),
+  Allvideos(),
+  RecentPage(),
   Favirote(),
-  const PlayList()
+  PlayList()
 ];
 List screenTitile = const [
   "Folders",

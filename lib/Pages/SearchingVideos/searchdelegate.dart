@@ -1,12 +1,9 @@
-import 'package:broto_player/Getx/player_getx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
-import 'package:get/get.dart';
 import '../../Fetching files/InnerFetching/video_with_info.dart';
 import '../../videoplayer/widget/Project/allvideoplayer.dart';
 
 class Search extends SearchDelegate {
-  final allvideocontroller = Get.find<AllPlayerContoller>();
   @override
   List<Widget>? buildActions(BuildContext context) {
     return <Widget>[
@@ -62,14 +59,7 @@ class Search extends SearchDelegate {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (ctx) {
-                          allvideocontroller.urls = calling;
-                          allvideocontroller.index = index;
-                          return  AllvideoPlayer(
-                            // urls: calling , index: index
-                            );
-                        }
-                       
+                        builder: (ctx) => AllvideoPlayer(urls: calling , index: index),
                       ),
                     ),
                     leading: Image.asset('asset/images/play button.jpg'),

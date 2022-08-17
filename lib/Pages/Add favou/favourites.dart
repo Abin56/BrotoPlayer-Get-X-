@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:broto_player/Getx/player_getx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import '../../Database/datamode.dart';
 import '../../main.dart';
@@ -16,8 +14,7 @@ bool boolfav = false;
 var showsnackbar;
 
 class Favirote extends StatelessWidget {
-  final allvideocontroller = Get.find<AllPlayerContoller>();
-  Favirote({Key? key}) : super(key: key);
+  const Favirote({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +68,10 @@ class Favirote extends StatelessWidget {
                                         result = getList(favList.values.toList());
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
-                                            builder: (context) {
-                                              allvideocontroller.urls = result;
-                                              allvideocontroller.index = index;
-                                              return AllvideoPlayer(
-                                              // urls: result,
-                                              // index: index,
-                                            );
-                                            }
+                                            builder: (context) => AllvideoPlayer(
+                                              urls: result,
+                                              index: index,
+                                            ),
                                           ),
                                         );
                                       },

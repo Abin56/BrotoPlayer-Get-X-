@@ -2,11 +2,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:broto_player/Fetching%20files/InnerFetching/load_folder_video.dart';
-import 'package:broto_player/Getx/player_getx.dart';
 import 'package:broto_player/widgets/loding/circularind_.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import '../../Database/datamode.dart';
 import '../../Fetching files/InnerFetching/fetch_video_data.dart';
@@ -22,8 +20,7 @@ bool hasMoreData = true;
 final ScrollController _scrollController = ScrollController();
 
 class AllVideoTile extends StatelessWidget {
-  final allvideocontroller = Get.find<AllPlayerContoller>();
-   AllVideoTile({Key? key}) : super(key: key);
+  const AllVideoTile({Key? key}) : super(key: key);
 
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
@@ -87,16 +84,11 @@ class AllVideoTile extends StatelessWidget {
                                   child: ListTile(
                                       onTap: () => Navigator.of(context).push(
                                           MaterialPageRoute(
-                                              builder: (context) {
-                                                allvideocontroller.urls = fetchedVideosPath;
-                                                allvideocontroller.index = index;
-                                                return   AllvideoPlayer(
-                                                    // urls: fetchedVideosPath,
-                                                    // index: index,
-                                                  );
-                                              }
-                                                
-                                                  )),
+                                              builder: (context) =>
+                                                  AllvideoPlayer(
+                                                    urls: fetchedVideosPath,
+                                                    index: index,
+                                                  ))),
                                       title: Padding(
                                         padding: const EdgeInsets.all(15),
                                         child: Row(

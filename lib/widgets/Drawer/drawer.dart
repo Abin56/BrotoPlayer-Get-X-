@@ -3,6 +3,7 @@ import 'package:broto_player/homescreen.dart';
 import 'package:broto_player/widgets/Drawer/menu_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MyHeaderDrawer extends StatelessWidget {
   const MyHeaderDrawer({Key? key}) : super(key: key);
@@ -108,7 +109,9 @@ Widget MyDrawerList(context) {
           termsAndConditions(context);
         }),
         MenuItem(4, "Share", Icons.share,
-            currentPage == DrawerSections.share ? true : false, () {}),
+            currentPage == DrawerSections.share ? true : false, () async{
+            await  Share.share('https://play.google.com/store/apps/details?id=in.brototype.BrotoPlayer');
+            }),
         MenuItem(6, "Contact us", Icons.contact_mail_outlined,
             currentPage == DrawerSections.contact ? true : false, () {
           contactus(context);
@@ -128,7 +131,7 @@ Widget MyDrawerList(context) {
                 const Text('BROTOPLAYER is a Video Player created by Abin john')
               ]);
         }),
-        Container(
+        SizedBox(
           height: 200,
           width: 100,
           child: Stack(children: [
@@ -136,7 +139,7 @@ Widget MyDrawerList(context) {
                left: 5,
               top: 40,
               child: Row(
-                children: [
+                children: const [
                   Icon(
                     Icons.adb_outlined,
                     color: Colors.green,
@@ -154,7 +157,7 @@ Widget MyDrawerList(context) {
                     top: 64,
                     left: 44,
                       child: Column(
-                        children: [
+                        children: const [
                           Text(
                     "1.0.2",
                     style: TextStyle(color: Color.fromARGB(156, 255, 255, 255),fontSize: 11.5),

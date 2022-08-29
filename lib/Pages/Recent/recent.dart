@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
 class RecentPage extends StatelessWidget {
   const RecentPage({Key? key}) : super(key: key);
 
@@ -17,9 +16,6 @@ class RecentPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-        
-          
-          
           const SizedBox(
             height: 30,
           ),
@@ -50,7 +46,7 @@ class RecentPage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -59,7 +55,7 @@ class RecentPage extends StatelessWidget {
               AnimatedButton(
                 height: 50.h,
                 width: 200.w,
-                child: Text(
+                child: const Text(
                   'Clear Recent',
                   style: TextStyle(
                     fontSize: 22,
@@ -69,32 +65,32 @@ class RecentPage extends StatelessWidget {
                 ),
                 color: Colors.red,
                 onPressed: () {
-             recentDB.clear();
+                  recentDB.clear();
                 },
                 enabled: true,
                 shadowDegree: ShadowDegree.dark,
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-         ValueListenableBuilder(valueListenable:recentDB.listenable(),
-          builder: (BuildContext context, Box<Recentlistingmode> videoR_Listenable, Widget? child){
-            return Expanded(
-                  child: ListView.builder(
-                itemCount: recentDB.length,
-                itemBuilder: (context, index) {
-                  Recentlistingmode? objplayvideo =
-                      recentDB.getAt(index);
-                      
-                 
-                  return RecentVideoList(playlistvideoname: objplayvideo!.recentpath, index: index);
-                },
-              ));
+          ValueListenableBuilder(
+              valueListenable: recentDB.listenable(),
+              builder: (BuildContext context,
+                  Box<Recentlistingmode> videoR_Listenable, Widget? child) {
+                return Expanded(
+                    child: ListView.builder(
+                  itemCount: recentDB.length,
+                  itemBuilder: (context, index) {
+                    Recentlistingmode? objplayvideo = recentDB.getAt(index);
 
-          }
-          ),
+                    return RecentVideoList(
+                        playlistvideoname: objplayvideo!.recentpath,
+                        index: index);
+                  },
+                ));
+              }),
         ],
       ),
     );

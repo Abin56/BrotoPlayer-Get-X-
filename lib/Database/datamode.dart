@@ -11,7 +11,7 @@ class DbVideplayer {
   @HiveField(2)
   final String folderPath;
   @HiveField(3)
-  final String thumbnail;
+   String thumbnail;
   @HiveField(4)
   bool isFav;
 

@@ -49,6 +49,8 @@ dependencies:
   animated_button: ^0.2.0
   fluttertoast: ^8.0.9
   get: ^4.6.5
+  cached_network_image: ^3.2.1
+  share_plus: ^4.0.10+1
  
   
 
@@ -96,6 +98,7 @@ flutter:
     - asset/images/Thumbnail.png
     - asset/images/new.jpeg
     - asset/images/Recent.jpeg
+    - asset/images/loading lottiefile.json
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

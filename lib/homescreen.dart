@@ -108,7 +108,7 @@ List screenTitile = const [
   "All videos",
   "Recent List",
   "Favourites List",
-  "Play List"
+  "Playlist"
 ];
 
 class HomeScreens extends StatelessWidget {

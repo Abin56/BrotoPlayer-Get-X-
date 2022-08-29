@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import '../../Database/datamode.dart';
 import '../../main.dart';
@@ -16,6 +17,18 @@ class PLvideolist extends StatelessWidget {
       children: [
         const SizedBox(
           height: 30,
+        ),
+        Row(
+          children: [
+            IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                )),
+          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +70,7 @@ class PLvideolist extends StatelessWidget {
                 itemBuilder: (context, index) {
                   videoplaylistmode? objplayvideo =
                       videoPlaylistDB.getAt(index);
-                      print(videoPLlistenable..get(key));
+                  print(videoPLlistenable..get(key));
                   if (objplayvideo!.playfolderlistname.toString() ==
                       Playlistpath) {
                     return PLonevideotile(
@@ -65,7 +78,7 @@ class PLvideolist extends StatelessWidget {
                         index: index);
                   }
 
-                  return SizedBox();
+                  return const SizedBox();
                 },
               ));
             })

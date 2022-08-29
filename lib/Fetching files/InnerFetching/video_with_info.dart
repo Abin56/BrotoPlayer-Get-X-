@@ -1,3 +1,4 @@
+import 'package:broto_player/Pages/all_videos/all_videos_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
 import '../../Database/datamode.dart';
@@ -19,7 +20,7 @@ Future getVideoWithInfo() async {
         videoPath: info!.path,
         videoName: info.title,
         folderPath: '',
-        thumbnail: '',
+        thumbnail:'' ,
         isFav: false);
     modelList.add(videoObj);
     fetchedVideosWithInfo.value.add(info);

@@ -1,5 +1,12 @@
+import 'dart:io';
+
+import 'package:broto_player/Database/datamode.dart';
+import 'package:broto_player/Pages/all_videos/all_videos_tile.dart';
+import 'package:broto_player/main.dart';
+import 'package:broto_player/videoplayer/thumbnail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
+import 'package:lottie/lottie.dart';
 import '../../Fetching files/InnerFetching/video_with_info.dart';
 import '../../videoplayer/widget/Project/allvideoplayer.dart';
 
@@ -42,49 +49,58 @@ class Search extends SearchDelegate {
     return Scaffold(
         backgroundColor: Colors.black,
         body: mylist.isEmpty
-            ? Text("No matching found")
+            ? const Text("No matching found")
             : ListView.separated(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 separatorBuilder: (BuildContext context, int index) =>
-                    Divider(
-                      
-                    ),
+                    const Divider(),
                 itemCount: mylist.length,
-                
                 itemBuilder: (context, index) {
                   // log(mylist.length.toString());
-                  List<String> calling = getlist(mylist , index);
+                  List<String> calling = getlist(mylist, index);
                   final VideoData video = mylist[index];
+                  DbVideplayer? videos = videoDB.getAt(index);
                   return ListTile(
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (ctx) => AllvideoPlayer(urls: calling , index: index),
+                        builder: (ctx) =>
+                            AllvideoPlayer(urls: calling, index: index),
                       ),
                     ),
-                    leading: Image.asset('asset/images/play button.jpg'),
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 50,
+                      child: FutureBuilder(
+                        future: getHiveThumbnail(videos!, index),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<String> snapshot) {
+                          if (snapshot.hasData) {
+                            return Image.file(File(videos.thumbnail));
+                          } else {
+                            return Center(
+                              child: LottieBuilder.asset(
+                                  'asset/images/loading lottiefile.json'),
+                            );
+                          }
+                        },
+                      ),
+                    ),
                     title: Text(
                       video.title!,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                  //   trailing: IconButton(
-                  //   onPressed: () {},
-                  //   icon: const Icon(
-                  //     Icons.more_vert,
-                  //     color: Colors.white,
-                  //   ),
-                  // ),
                   );
                 },
               ));
   }
-  getlist(List<VideoData> mylist ,  index  ) {
+
+  getlist(List<VideoData> mylist, index) {
     List<String> videopath = [];
     for (VideoData obj in mylist) {
       videopath.add(obj.path!);
-     
     }
-     return videopath;
+    return videopath;
   }
 }

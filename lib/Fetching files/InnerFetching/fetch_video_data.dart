@@ -77,11 +77,6 @@ Future<bool> _requestPermission(Permission permission) async {
     }
   }
 }
- void getData()async{
-  if(!isLoadingData && hasMoreData){
-    isLoadingData = true;
-    
-  await Future.delayed(Duration(seconds: 2));
-  }
+ 
 
-}
+
